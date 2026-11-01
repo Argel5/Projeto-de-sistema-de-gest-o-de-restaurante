@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Diagramas, Protótipos e Evidências - Casa Florense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f5f9; }
+        .diagram-canvas { background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .tab-btn.active { background-color: #1e293b; color: #ffffff; border-color: #1e293b; }
+    </style>
+</head>
+<body class="p-4 md:p-6">
+
+    <!-- Barra de Controle Superior -->
+    <div class="max-w-6xl mx-auto mb-6 bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-xl font-bold text-slate-800">Painel de Artefatos Visuais – Casa Florense (Fases 1 a 5)</h1>
+                <p class="text-sm text-slate-600">Subtítulo oficial: <strong>Culinária Caseira, Lanches e Sobremesas (Refeições para toda hora)</strong> — Banco: <code>casa_florense_db</code></p>
+            </div>
+            <button onclick="baixarDiagramaAtual()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2 text-sm shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                Baixar Imagem PNG Deste Quadro
+            </button>
+        </div>
+
+        <!-- Abas de Navegação -->
+        <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-slate-100">
+            <button onclick="mostrarAba('fig1')" id="btn-fig1" class="tab-btn active px-3.5 py-2 rounded-md text-xs font-semibold border border-slate-300 text-slate-700 transition">
+                1. Casos de Uso (Fig. 1)
+            </button>
+            <button onclick="mostrarAba('fig2')" id="btn-fig2" class="tab-btn px-3.5 py-2 rounded-md text-xs font-semibold border border-slate-300 text-slate-700 transition">
+                2. Diagrama de Classes (Fig. 2)
+            </button>
+            <button onclick="mostrarAba('fig3')" id="btn-fig3" class="tab-btn px-3.5 py-2 rounded-md text-xs font-semibold border border-slate-300 text-slate-700 transition">
+                3. Modelo MER - MySQL (Fig. 3)
+            </button>
+            <button onclick="mostrarAba('fig4')" id="btn-fig4" class="tab-btn px-3.5 py-2 rounded-md text-xs font-semibold border border-slate-300 text-slate-700 transition">
+                4. Diagrama de Sequência (Fig. 4)
+            </button>
+            <button onclick="mostrarAba('fig5')" id="btn-fig5" class="tab-btn px-3.5 py-2 rounded-md text-xs font-semibold border border-amber-400 bg-amber-50 text-amber-900 transition">
+                5. As 4 Telas Prototipadas (Fig. 5 a 8)
+            </button>
+            <button onclick="mostrarAba('fig6')" id="btn-fig6" class="tab-btn px-3.5 py-2 rounded-md text-xs font-semibold border border-emerald-400 bg-emerald-50 text-emerald-900 transition">
+                6. Execução e Evidências de Testes (Fig. 9 a 12)
+            </button>
+        </div>
+    </div>
+
+    <!-- ÁREA DE EXIBIÇÃO DOS DIAGRAMAS -->
+    <div class="max-w-6xl mx-auto">
+
+        <!-- ==========================================
+             FIGURA 1: DIAGRAMA DE CASOS DE USO (FASE 1)
+             ========================================== -->
+        <div id="aba-fig1" class="aba-content">
+            <div id="capture-fig1" class="diagram-canvas flex flex-col items-center">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 self-start">UML Use Case Diagram — Casa Florense: Culinária Caseira, Lanches e Sobremesas</div>
+                <svg viewBox="0 0 840 470" class="w-full max-w-4xl h-auto bg-white">
+                    <!-- Fronteira do Sistema -->
+                    <rect x="220" y="20" width="580" height="430" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2" />
+                    <text x="510" y="46" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="14.5" fill="#0f172a">
+                        &lt;&lt;system&gt;&gt; Casa Florense — Culinária Caseira, Lanches e Sobremesas
+                    </text>
+                    <line x1="220" y1="62" x2="800" y2="62" stroke="#cbd5e1" stroke-width="1" />
+
+                    <!-- Ator: Atendente -->
+                    <g transform="translate(85, 195)">
+                        <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#0f172a" stroke-width="2.5" />
+                        <line x1="0" y1="18" x2="0" y2="65" stroke="#0f172a" stroke-width="2.5" />
+                        <line x1="-26" y1="35" x2="26" y2="35" stroke="#0f172a" stroke-width="2.5" />
+                        <line x1="0" y1="65" x2="-22" y2="105" stroke="#0f172a" stroke-width="2.5" />
+                        <line x1="0" y1="65" x2="22" y2="105" stroke="#0f172a" stroke-width="2.5" />
+                        <text x="0" y="128" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="14" fill="#0f172a">Atendente</text>
+                    </g>
+
+                    <!-- Linhas de Associação -->
+                    <line x1="115" y1="220" x2="360" y2="105" stroke="#334155" stroke-width="1.8" />
+                    <line x1="115" y1="225" x2="360" y2="175" stroke="#334155" stroke-width="1.8" />
+                    <line x1="115" y1="230" x2="360" y2="245" stroke="#334155" stroke-width="1.8" />
+                    <line x1="115" y1="235" x2="360" y2="315" stroke="#334155" stroke-width="1.8" />
+                    <line x1="115" y1="240" x2="360" y2="385" stroke="#334155" stroke-width="1.8" />
+
+                    <!-- UC01 -->
+                    <g transform="translate(510, 105)">
+                        <ellipse cx="0" cy="0" rx="155" ry="26" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+                        <text x="0" y="5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="600" font-size="13" fill="#1e293b">UC01 - Gerenciar Produtos do Cardápio</text>
+                    </g>
+
+                    <!-- UC02 -->
+                    <g transform="translate(510, 175)">
+                        <ellipse cx="0" cy="0" rx="155" ry="26" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+                        <text x="0" y="5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="600" font-size="13" fill="#1e293b">UC02 - Cadastrar Cliente</text>
+                    </g>
+
+                    <!-- UC03 -->
+                    <g transform="translate(510, 245)">
+                        <ellipse cx="0" cy="0" rx="155" ry="26" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+                        <text x="0" y="5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="600" font-size="13" fill="#1e293b">UC03 - Registrar Pedido</text>
+                    </g>
+
+                    <!-- UC04 -->
+                    <g transform="translate(510, 315)">
+                        <ellipse cx="0" cy="0" rx="155" ry="26" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+                        <text x="0" y="5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="600" font-size="13" fill="#1e293b">UC04 - Consultar Pedidos do Dia</text>
+                    </g>
+
+                    <!-- UC05 -->
+                    <g transform="translate(510, 385)">
+                        <ellipse cx="0" cy="0" rx="155" ry="26" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+                        <text x="0" y="5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="600" font-size="13" fill="#1e293b">UC05 - Atualizar Status do Pedido</text>
+                    </g>
+                </svg>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 text-center">Legenda para o Word: <strong>Figura 1 – Diagrama de Casos de Uso do Sistema Casa Florense. Fonte: Elaborado pelo autor (2026).</strong></p>
+        </div>
+
+        <!-- ==========================================
+             FIGURA 2: DIAGRAMA DE CLASSES (FASE 2)
+             ========================================== -->
+        <div id="aba-fig2" class="aba-content hidden">
+            <div id="capture-fig2" class="diagram-canvas flex flex-col items-center">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 self-start">UML Class Diagram — Domínio Casa Florense (br.com.casaflorense.model)</div>
+                <svg viewBox="0 0 920 530" class="w-full max-w-5xl h-auto bg-white">
+                    <!-- Linhas de Associação entre as Classes -->
+                    <!-- Atendente (1) ---- (0..*) Pedido -->
+                    <line x1="270" y1="115" x2="490" y2="115" stroke="#1e293b" stroke-width="2" />
+                    <text x="282" y="107" font-family="Segoe UI" font-size="12" font-weight="bold" fill="#0f172a">1</text>
+                    <text x="458" y="107" font-family="Segoe UI" font-size="12" font-weight="bold" fill="#0f172a">0..*</text>
+                    <text x="380" y="105" text-anchor="middle" font-family="Segoe UI" font-size="11" font-style="italic" fill="#475569">registra &gt;</text>
+
+                    <!-- Cliente (1) ---- (0..*) Pedido -->
+                    <polyline points="270,390 380,390 380,200 490,200" fill="none" stroke="#1e293b" stroke-width="2" />
+                    <text x="282" y="382" font-family="Segoe UI" font-size="12" font-weight="bold" fill="#0f172a">1</text>
+                    <text x="458" y="192" font-family="Segoe UI" font-size="12" font-weight="bold" fill="#0f172a">0..*</text>
+                    <text x="335" y="380" font-family="Segoe UI" font-size="11" font-style="italic" fill="#475569">realiza &gt;</text>
+
+                    <!-- Produto (1) ---- (0..*) Pedido -->
+                    <line x1="685" y1="275" x2="685" y2="340" stroke="#1e293b" stroke-width="2" />
+                    <text x="695" y="295" font-family="Segoe UI" font-size="12" font-weight="bold" fill="#0f172a">0..*</text>
+                    <text x="695" y="330" font-family="Segoe UI" font-size="12" font-weight="bold" fill="#0f172a">1</text>
+                    <text x="735" y="312" font-family="Segoe UI" font-size="11" font-style="italic" fill="#475569">contém item</text>
+
+                    <!-- CLASSE 1: Atendente -->
+                    <g transform="translate(25, 35)">
+                        <rect x="0" y="0" width="245" height="165" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+                        <rect x="0" y="0" width="245" height="30" fill="#e2e8f0" stroke="#1e293b" stroke-width="2" />
+                        <text x="122" y="20" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="14" fill="#0f172a">Atendente</text>
+                        <text x="10" y="50" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- id : int</text>
+                        <text x="10" y="68" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- nome : String</text>
+                        <text x="10" y="86" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- email : String</text>
+                        <text x="10" y="104" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- senha : String</text>
+                        <line x1="0" y1="116" x2="245" y2="116" stroke="#1e293b" stroke-width="1.5" />
+                        <text x="10" y="138" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ autenticar(email, senha) : boolean</text>
+                        <text x="10" y="155" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ listarAtendentes() : List&lt;Atendente&gt;</text>
+                    </g>
+
+                    <!-- CLASSE 2: Cliente -->
+                    <g transform="translate(25, 295)">
+                        <rect x="0" y="0" width="245" height="175" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+                        <rect x="0" y="0" width="245" height="30" fill="#e2e8f0" stroke="#1e293b" stroke-width="2" />
+                        <text x="122" y="20" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="14" fill="#0f172a">Cliente</text>
+                        <text x="10" y="50" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- id : int</text>
+                        <text x="10" y="68" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- nome : String</text>
+                        <text x="10" y="86" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- telefone : String</text>
+                        <text x="10" y="104" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- endereco : String</text>
+                        <line x1="0" y1="118" x2="245" y2="118" stroke="#1e293b" stroke-width="1.5" />
+                        <text x="10" y="140" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ cadastrarCliente() : void</text>
+                        <text x="10" y="158" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ buscarClientes() : List&lt;Cliente&gt;</text>
+                    </g>
+
+                    <!-- CLASSE 3: Pedido -->
+                    <g transform="translate(490, 25)">
+                        <rect x="0" y="0" width="390" height="250" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+                        <rect x="0" y="0" width="390" height="30" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+                        <text x="195" y="20" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="14" fill="#0f172a">Pedido</text>
+                        <text x="12" y="48" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- id : int</text>
+                        <text x="12" y="65" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- cliente : Cliente</text>
+                        <text x="12" y="82" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- produto : Produto</text>
+                        <text x="12" y="99" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- atendente : Atendente</text>
+                        <text x="12" y="116" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- quantidade : int</text>
+                        <text x="12" y="133" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- valorTotal : double</text>
+                        <text x="12" y="150" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- status : String</text>
+                        <text x="12" y="167" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- dataHora : LocalDateTime</text>
+                        <line x1="0" y1="178" x2="390" y2="178" stroke="#1e293b" stroke-width="1.5" />
+                        <text x="12" y="198" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ calcularValorTotal() : double</text>
+                        <text x="12" y="216" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ registrarPedido() : void</text>
+                        <text x="12" y="234" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ atualizarStatus(novoStatus : String) : void</text>
+                    </g>
+
+                    <!-- CLASSE 4: Produto (Cardápio) -->
+                    <g transform="translate(490, 340)">
+                        <rect x="0" y="0" width="390" height="175" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+                        <rect x="0" y="0" width="390" height="30" fill="#fef3c7" stroke="#1e293b" stroke-width="2" />
+                        <text x="195" y="20" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="14" fill="#0f172a">Produto (Item do Cardápio)</text>
+                        <text x="12" y="48" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- id : int</text>
+                        <text x="12" y="65" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- nome : String</text>
+                        <text x="12" y="82" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- categoria : String</text>
+                        <text x="12" y="99" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- descricao : String</text>
+                        <text x="12" y="116" font-family="Consolas, monospace" font-size="12" fill="#1e293b">- preco : double</text>
+                        <line x1="0" y1="126" x2="390" y2="126" stroke="#1e293b" stroke-width="1.5" />
+                        <text x="12" y="145" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ cadastrarProduto() : void</text>
+                        <text x="12" y="163" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">+ listarCardapio() : List&lt;Produto&gt;</text>
+                    </g>
+                </svg>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 text-center">Legenda para o Word: <strong>Figura 2 – Diagrama de Classes do Sistema Casa Florense. Fonte: Elaborado pelo autor (2026).</strong></p>
+        </div>
+
+        <!-- ==========================================
+             FIGURA 3: MODELO ENTIDADE-RELACIONAMENTO (MER)
+             ========================================== -->
+        <div id="aba-fig3" class="aba-content hidden">
+            <div id="capture-fig3" class="diagram-canvas flex flex-col items-center">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 self-start">Relational Schema (MER / DER) — Database: casa_florense_db (MySQL)</div>
+                <svg viewBox="0 0 920 510" class="w-full max-w-5xl h-auto bg-white">
+                    <!-- cliente (1) ----< (N) pedido -->
+                    <line x1="305" y1="120" x2="535" y2="120" stroke="#0284c7" stroke-width="2" />
+                    <line x1="320" y1="112" x2="320" y2="128" stroke="#0284c7" stroke-width="2" />
+                    <line x1="326" y1="112" x2="326" y2="128" stroke="#0284c7" stroke-width="2" />
+                    <line x1="518" y1="112" x2="518" y2="128" stroke="#0284c7" stroke-width="2" />
+                    <line x1="518" y1="120" x2="535" y2="111" stroke="#0284c7" stroke-width="2" />
+                    <line x1="518" y1="120" x2="535" y2="129" stroke="#0284c7" stroke-width="2" />
+                    <text x="420" y="110" text-anchor="middle" font-family="Segoe UI" font-size="11" font-weight="bold" fill="#0369a1">1 : N (possui)</text>
+
+                    <!-- produto (1) ----< (N) pedido -->
+                    <polyline points="305,365 420,365 420,185 535,185" fill="none" stroke="#0284c7" stroke-width="2" />
+                    <line x1="320" y1="357" x2="320" y2="373" stroke="#0284c7" stroke-width="2" />
+                    <line x1="326" y1="357" x2="326" y2="373" stroke="#0284c7" stroke-width="2" />
+                    <line x1="518" y1="177" x2="518" y2="193" stroke="#0284c7" stroke-width="2" />
+                    <line x1="518" y1="185" x2="535" y2="176" stroke="#0284c7" stroke-width="2" />
+                    <line x1="518" y1="185" x2="535" y2="194" stroke="#0284c7" stroke-width="2" />
+                    <text x="368" y="355" font-family="Segoe UI" font-size="11" font-weight="bold" fill="#0369a1">1 : N (compõe)</text>
+
+                    <!-- atendente (1) ----< (N) pedido -->
+                    <line x1="705" y1="265" x2="705" y2="335" stroke="#0284c7" stroke-width="2" />
+                    <line x1="697" y1="320" x2="713" y2="320" stroke="#0284c7" stroke-width="2" />
+                    <line x1="697" y1="325" x2="713" y2="325" stroke="#0284c7" stroke-width="2" />
+                    <line x1="697" y1="280" x2="713" y2="280" stroke="#0284c7" stroke-width="2" />
+                    <line x1="705" y1="280" x2="696" y2="265" stroke="#0284c7" stroke-width="2" />
+                    <line x1="705" y1="280" x2="714" y2="265" stroke="#0284c7" stroke-width="2" />
+                    <text x="755" y="305" font-family="Segoe UI" font-size="11" font-weight="bold" fill="#0369a1">1 : N (atende)</text>
+
+                    <!-- TABELA 1: cliente -->
+                    <g transform="translate(25, 35)">
+                        <rect x="0" y="0" width="280" height="145" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <rect x="0" y="0" width="280" height="30" rx="2" fill="#0284c7" />
+                        <text x="12" y="20" font-family="Consolas, monospace" font-weight="bold" font-size="14" fill="#ffffff">TB: cliente</text>
+                        <text x="12" y="52" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#854d0e">[PK] id</text>
+                        <text x="200" y="52" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT</text>
+                        <line x1="0" y1="62" x2="280" y2="62" stroke="#e2e8f0" />
+                        <text x="12" y="82" font-family="Consolas, monospace" font-size="12" fill="#0f172a">nome</text>
+                        <text x="170" y="82" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(100)</text>
+                        <line x1="0" y1="92" x2="280" y2="92" stroke="#e2e8f0" />
+                        <text x="12" y="110" font-family="Consolas, monospace" font-size="12" fill="#0f172a">telefone</text>
+                        <text x="170" y="110" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(20)</text>
+                        <line x1="0" y1="120" x2="280" y2="120" stroke="#e2e8f0" />
+                        <text x="12" y="136" font-family="Consolas, monospace" font-size="12" fill="#0f172a">endereco</text>
+                        <text x="170" y="136" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(200)</text>
+                    </g>
+
+                    <!-- TABELA 2: produto (Cardápio) -->
+                    <g transform="translate(25, 275)">
+                        <rect x="0" y="0" width="280" height="175" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <rect x="0" y="0" width="280" height="30" rx="2" fill="#0284c7" />
+                        <text x="12" y="20" font-family="Consolas, monospace" font-weight="bold" font-size="14" fill="#ffffff">TB: produto (Cardápio)</text>
+                        <text x="12" y="52" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#854d0e">[PK] id</text>
+                        <text x="170" y="52" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT</text>
+                        <line x1="0" y1="62" x2="280" y2="62" stroke="#e2e8f0" />
+                        <text x="12" y="80" font-family="Consolas, monospace" font-size="12" fill="#0f172a">nome</text>
+                        <text x="170" y="80" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(100)</text>
+                        <line x1="0" y1="90" x2="280" y2="90" stroke="#e2e8f0" />
+                        <text x="12" y="108" font-family="Consolas, monospace" font-size="12" fill="#0f172a">categoria</text>
+                        <text x="170" y="108" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(50)</text>
+                        <line x1="0" y1="118" x2="280" y2="118" stroke="#e2e8f0" />
+                        <text x="12" y="136" font-family="Consolas, monospace" font-size="12" fill="#0f172a">descricao</text>
+                        <text x="170" y="136" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(255)</text>
+                        <line x1="0" y1="146" x2="280" y2="146" stroke="#e2e8f0" />
+                        <text x="12" y="164" font-family="Consolas, monospace" font-size="12" fill="#0f172a">preco</text>
+                        <text x="170" y="164" font-family="Consolas, monospace" font-size="11.5" fill="#475569">DECIMAL(10,2)</text>
+                    </g>
+
+                    <!-- TABELA 3: pedido -->
+                    <g transform="translate(535, 25)">
+                        <rect x="0" y="0" width="340" height="240" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <rect x="0" y="0" width="340" height="30" rx="2" fill="#0369a1" />
+                        <text x="12" y="20" font-family="Consolas, monospace" font-weight="bold" font-size="14" fill="#ffffff">TB: pedido</text>
+                        <text x="12" y="50" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#854d0e">[PK] id</text>
+                        <text x="220" y="50" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT</text>
+                        <line x1="0" y1="58" x2="340" y2="58" stroke="#e2e8f0" />
+                        <text x="12" y="76" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#1e40af">[FK] cliente_id</text>
+                        <text x="220" y="76" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT NOT NULL</text>
+                        <line x1="0" y1="84" x2="340" y2="84" stroke="#e2e8f0" />
+                        <text x="12" y="102" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#1e40af">[FK] produto_id</text>
+                        <text x="220" y="102" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT NOT NULL</text>
+                        <line x1="0" y1="110" x2="340" y2="110" stroke="#e2e8f0" />
+                        <text x="12" y="128" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#1e40af">[FK] atendente_id</text>
+                        <text x="220" y="128" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT</text>
+                        <line x1="0" y1="136" x2="340" y2="136" stroke="#e2e8f0" />
+                        <text x="12" y="154" font-family="Consolas, monospace" font-size="12" fill="#0f172a">quantidade</text>
+                        <text x="220" y="154" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT</text>
+                        <line x1="0" y1="162" x2="340" y2="162" stroke="#e2e8f0" />
+                        <text x="12" y="180" font-family="Consolas, monospace" font-size="12" fill="#0f172a">valor_total</text>
+                        <text x="220" y="180" font-family="Consolas, monospace" font-size="11.5" fill="#475569">DECIMAL(10,2)</text>
+                        <line x1="0" y1="188" x2="340" y2="188" stroke="#e2e8f0" />
+                        <text x="12" y="206" font-family="Consolas, monospace" font-size="12" fill="#0f172a">status</text>
+                        <text x="220" y="206" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(30)</text>
+                        <line x1="0" y1="214" x2="340" y2="214" stroke="#e2e8f0" />
+                        <text x="12" y="232" font-family="Consolas, monospace" font-size="12" fill="#0f172a">data_hora</text>
+                        <text x="220" y="232" font-family="Consolas, monospace" font-size="11.5" fill="#475569">DATETIME</text>
+                    </g>
+
+                    <!-- TABELA 4: atendente -->
+                    <g transform="translate(535, 335)">
+                        <rect x="0" y="0" width="340" height="145" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <rect x="0" y="0" width="340" height="30" rx="2" fill="#0284c7" />
+                        <text x="12" y="20" font-family="Consolas, monospace" font-weight="bold" font-size="14" fill="#ffffff">TB: atendente</text>
+                        <text x="12" y="52" font-family="Consolas, monospace" font-weight="bold" font-size="12" fill="#854d0e">[PK] id</text>
+                        <text x="220" y="52" font-family="Consolas, monospace" font-size="11.5" fill="#475569">INT</text>
+                        <line x1="0" y1="62" x2="340" y2="62" stroke="#e2e8f0" />
+                        <text x="12" y="82" font-family="Consolas, monospace" font-size="12" fill="#0f172a">nome</text>
+                        <text x="220" y="82" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(100)</text>
+                        <line x1="0" y1="92" x2="340" y2="92" stroke="#e2e8f0" />
+                        <text x="12" y="110" font-family="Consolas, monospace" font-size="12" fill="#0f172a">email</text>
+                        <text x="220" y="110" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(100)</text>
+                        <line x1="0" y1="120" x2="340" y2="120" stroke="#e2e8f0" />
+                        <text x="12" y="136" font-family="Consolas, monospace" font-size="12" fill="#0f172a">senha</text>
+                        <text x="220" y="136" font-family="Consolas, monospace" font-size="11.5" fill="#475569">VARCHAR(100)</text>
+                    </g>
+                </svg>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 text-center">Legenda para o Word: <strong>Figura 3 – Modelo Entidade-Relacionamento (MER) do Sistema Casa Florense. Fonte: Elaborado pelo autor (2026).</strong></p>
+        </div>
+
+        <!-- ==========================================
+             FIGURA 4: DIAGRAMA DE SEQUÊNCIA (FASE 2)
+             ========================================== -->
+        <div id="aba-fig4" class="aba-content hidden">
+            <div id="capture-fig4" class="diagram-canvas flex flex-col items-center">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 self-start">UML Sequence Diagram — UC03: Registrar Pedido (Casa Florense)</div>
+                <svg viewBox="0 0 920 500" class="w-full max-w-5xl h-auto bg-white">
+                    <defs>
+                        <marker id="arrow-solid" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#0f172a" />
+                        </marker>
+                        <marker id="arrow-open" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L9,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5" />
+                        </marker>
+                    </defs>
+
+                    <!-- Participante 1: Atendente -->
+                    <g transform="translate(80, 20)">
+                        <circle cx="0" cy="12" r="10" fill="#fff" stroke="#0f172a" stroke-width="2" />
+                        <line x1="0" y1="22" x2="0" y2="42" stroke="#0f172a" stroke-width="2" />
+                        <line x1="-12" y1="30" x2="12" y2="30" stroke="#0f172a" stroke-width="2" />
+                        <line x1="0" y1="42" x2="-10" y2="56" stroke="#0f172a" stroke-width="2" />
+                        <line x1="0" y1="42" x2="10" y2="56" stroke="#0f172a" stroke-width="2" />
+                        <text x="0" y="72" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="13" fill="#0f172a">:Atendente</text>
+                    </g>
+
+                    <!-- Participante 2: TelaPedido -->
+                    <g transform="translate(310, 40)">
+                        <rect x="-80" y="0" width="160" height="36" fill="#e2e8f0" stroke="#1e293b" stroke-width="2" />
+                        <text x="0" y="23" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="13" fill="#0f172a">:TelaPedido (JSP)</text>
+                    </g>
+
+                    <!-- Participante 3: PedidoController -->
+                    <g transform="translate(560, 40)">
+                        <rect x="-85" y="0" width="170" height="36" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+                        <text x="0" y="23" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="13" fill="#0f172a">:PedidoController</text>
+                    </g>
+
+                    <!-- Participante 4: PedidoDAO / MySQL -->
+                    <g transform="translate(810, 40)">
+                        <rect x="-80" y="0" width="160" height="36" fill="#fef3c7" stroke="#1e293b" stroke-width="2" />
+                        <text x="0" y="23" text-anchor="middle" font-family="Segoe UI" font-weight="bold" font-size="13" fill="#0f172a">:PedidoDAO (MySQL)</text>
+                    </g>
+
+                    <!-- Lifelines Tracejadas -->
+                    <line x1="80" y1="98" x2="80" y2="470" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,5" />
+                    <line x1="310" y1="76" x2="310" y2="470" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,5" />
+                    <line x1="560" y1="76" x2="560" y2="470" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,5" />
+                    <line x1="810" y1="76" x2="810" y2="470" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,5" />
+
+                    <!-- Barras de Ativação -->
+                    <rect x="304" y="115" width="12" height="330" fill="#cbd5e1" stroke="#334155" stroke-width="1" />
+                    <rect x="554" y="135" width="12" height="90" fill="#93c5fd" stroke="#1e3a8a" stroke-width="1" />
+                    <rect x="804" y="155" width="12" height="45" fill="#fde68a" stroke="#92400e" stroke-width="1" />
+                    
+                    <rect x="554" y="295" width="12" height="125" fill="#93c5fd" stroke="#1e3a8a" stroke-width="1" />
+                    <rect x="804" y="340" width="12" height="50" fill="#fde68a" stroke="#92400e" stroke-width="1" />
+
+                    <!-- Mensagem 1 -->
+                    <line x1="80" y1="125" x2="302" y2="125" stroke="#0f172a" stroke-width="1.8" marker-end="url(#arrow-solid)" />
+                    <text x="190" y="118" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">1: acessarTelaPedidos()</text>
+
+                    <!-- Mensagem 2 -->
+                    <line x1="316" y1="145" x2="552" y2="145" stroke="#0f172a" stroke-width="1.8" marker-end="url(#arrow-solid)" />
+                    <text x="435" y="138" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">2: carregarFormulario()</text>
+
+                    <!-- Mensagem 3 -->
+                    <line x1="566" y1="165" x2="802" y2="165" stroke="#0f172a" stroke-width="1.8" marker-end="url(#arrow-solid)" />
+                    <text x="685" y="158" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">3: listarClientesECardapio()</text>
+
+                    <!-- Retorno 4 -->
+                    <line x1="802" y1="195" x2="566" y2="195" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-open)" />
+                    <text x="685" y="188" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#475569">4: listaClientes, listaProdutos</text>
+
+                    <!-- Retorno 5 -->
+                    <line x1="552" y1="220" x2="316" y2="220" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-open)" />
+                    <text x="435" y="213" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#475569">5: exibe formulário preenchido</text>
+
+                    <!-- Mensagem 6 -->
+                    <line x1="80" y1="275" x2="302" y2="275" stroke="#0f172a" stroke-width="1.8" marker-end="url(#arrow-solid)" />
+                    <text x="190" y="268" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">6: selecionaClienteProdutoQtd()</text>
+
+                    <!-- Mensagem 7 -->
+                    <line x1="316" y1="305" x2="552" y2="305" stroke="#0f172a" stroke-width="1.8" marker-end="url(#arrow-solid)" />
+                    <text x="435" y="298" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">7: registrarPedido(clienteId, prodId, qtd)</text>
+
+                    <!-- Self-call Cálculo -->
+                    <polyline points="566,315 605,315 605,332 568,332" fill="none" stroke="#0f172a" stroke-width="1.5" marker-end="url(#arrow-solid)" />
+                    <text x="675" y="327" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#0f172a">8: calcularValorTotal()</text>
+
+                    <!-- Mensagem 9 -->
+                    <line x1="566" y1="355" x2="802" y2="355" stroke="#0f172a" stroke-width="1.8" marker-end="url(#arrow-solid)" />
+                    <text x="685" y="348" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#0f172a">9: salvarPedido(pedido)</text>
+
+                    <!-- Retorno 10 -->
+                    <line x1="802" y1="385" x2="566" y2="385" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-open)" />
+                    <text x="685" y="378" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#475569">10: true (INSERT OK)</text>
+
+                    <!-- Retorno 11 -->
+                    <line x1="552" y1="415" x2="316" y2="415" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-open)" />
+                    <text x="435" y="408" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#475569">11: atualizaFilaPedidosDoDia()</text>
+
+                    <!-- Retorno 12 -->
+                    <line x1="302" y1="440" x2="80" y2="440" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-open)" />
+                    <text x="190" y="433" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#475569">12: exibe "Pedido Registrado!"</text>
+                </svg>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 text-center">Legenda para o Word: <strong>Figura 4 – Diagrama de Sequência do Caso de Uso "Registrar Pedido". Fonte: Elaborado pelo autor (2026).</strong></p>
+        </div>
+
+        <!-- ==========================================
+             FIGURA 5 A 8: AS 4 TELAS PROTOTIPADAS (FASE 3)
+             ========================================== -->
+        <div id="aba-fig5" class="aba-content hidden">
+            <div id="capture-fig5" class="diagram-canvas">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Fase 3 — Protótipos das 4 Telas do Sistema Casa Florense (Figuras 5, 6, 7 e 8)</div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- TELA 1: LOGIN DO ATENDENTE (FIGURA 5) -->
+                    <div id="prototipo-tela1" class="border-2 border-slate-300 rounded-lg overflow-hidden bg-slate-50 shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Tela 1 – Autenticação de Operador (Login)</span>
+                            <span class="text-slate-400 font-mono">http://localhost:8080/casa-florense/login</span>
+                        </div>
+                        <div class="p-6 flex flex-col items-center justify-center min-h-[260px]">
+                            <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm w-full max-w-xs">
+                                <div class="text-center mb-4">
+                                    <span class="bg-amber-600 text-white font-extrabold px-3 py-1 rounded text-sm tracking-wide">CASA FLORENSE</span>
+                                    <p class="text-[11px] font-semibold text-slate-600 mt-1.5">Culinária Caseira, Lanches e Sobremesas</p>
+                                    <p class="text-[10px] text-slate-400 italic">Refeições para toda hora</p>
+                                </div>
+                                <div class="space-y-3 text-xs">
+                                    <div>
+                                        <label class="font-semibold text-slate-700 block mb-1">E-mail do Atendente:</label>
+                                        <input type="text" value="atendimento@casaflorense.com.br" readonly class="w-full border border-slate-300 rounded px-2.5 py-1.5 bg-slate-50 text-slate-700" />
+                                    </div>
+                                    <div>
+                                        <label class="font-semibold text-slate-700 block mb-1">Senha:</label>
+                                        <input type="password" value="********" readonly class="w-full border border-slate-300 rounded px-2.5 py-1.5 bg-slate-50 text-slate-700" />
+                                    </div>
+                                    <button class="w-full bg-amber-600 text-white font-bold py-2 rounded">Entrar no Sistema</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TELA 2: GESTÃO DO CARDÁPIO (FIGURA 6) -->
+                    <div id="prototipo-tela2" class="border-2 border-slate-300 rounded-lg overflow-hidden bg-slate-50 shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Tela 2 – Gestão do Cardápio (RF01)</span>
+                            <span class="text-slate-400 font-mono">http://localhost:8080/casa-florense/cardapio</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-white p-3 rounded border border-slate-200">
+                                <div class="font-bold text-slate-800 mb-2">Cadastrar Item no Cardápio — Casa Florense</div>
+                                <div class="grid grid-cols-3 gap-2 mb-2">
+                                    <input type="text" value="Bife à Parmegiana Caseiro" readonly class="col-span-2 border border-slate-300 rounded px-2 py-1" />
+                                    <select class="border border-slate-300 rounded px-2 py-1 bg-white"><option>Prato Caseiro</option><option>Lanche</option><option>Sobremesa</option><option>Bebida</option></select>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <input type="text" value="Filé empanado ao molho artesanal, queijo gratinado, arroz e fritas" readonly class="col-span-2 border border-slate-300 rounded px-2 py-1" />
+                                    <input type="text" value="R$ 44,90" readonly class="border border-slate-300 rounded px-2 py-1 font-semibold" />
+                                </div>
+                                <button class="mt-2 bg-emerald-600 text-white font-semibold px-3 py-1 rounded">Salvar no Cardápio</button>
+                            </div>
+                            <div class="bg-white p-2.5 rounded border border-slate-200">
+                                <div class="font-bold text-slate-700 mb-1">Itens Ativos no Cardápio (casa_florense_db)</div>
+                                <table class="w-full text-left border-collapse">
+                                    <thead><tr class="border-b text-slate-500"><th class="py-1">ID</th><th>Item</th><th>Categoria</th><th>Preço</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b"><td>#1</td><td>Bife à Parmegiana Caseiro</td><td>Prato Caseiro</td><td>R$ 44,90</td></tr>
+                                        <tr class="border-b"><td>#2</td><td>X-Florense Artesanal</td><td>Lanche</td><td>R$ 29,00</td></tr>
+                                        <tr class="border-b"><td>#3</td><td>Torta Holandesa c/ Calda</td><td>Sobremesa</td><td>R$ 16,50</td></tr>
+                                        <tr><td>#4</td><td>Suco Natural de Uva 500ml</td><td>Bebida</td><td>R$ 12,00</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TELA 3: CADASTRO DE CLIENTES (FIGURA 7) -->
+                    <div id="prototipo-tela3" class="border-2 border-slate-300 rounded-lg overflow-hidden bg-slate-50 shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Tela 3 – Cadastro e Consulta de Clientes (RF02)</span>
+                            <span class="text-slate-400 font-mono">http://localhost:8080/casa-florense/clientes</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-white p-3 rounded border border-slate-200">
+                                <div class="font-bold text-slate-800 mb-2">Novo Cliente</div>
+                                <div class="grid grid-cols-2 gap-2 mb-2">
+                                    <input type="text" value="Carlos Eduardo Silva" readonly class="border border-slate-300 rounded px-2 py-1" />
+                                    <input type="text" value="(54) 99812-3456" readonly class="border border-slate-300 rounded px-2 py-1" />
+                                </div>
+                                <input type="text" value="Rua Borges de Medeiros, 450 - Centro" readonly class="w-full border border-slate-300 rounded px-2 py-1 mb-2" />
+                                <button class="bg-blue-600 text-white font-semibold px-3 py-1 rounded">Cadastrar Cliente</button>
+                            </div>
+                            <div class="bg-white p-2.5 rounded border border-slate-200">
+                                <div class="font-bold text-slate-700 mb-1">Clientes Cadastrados</div>
+                                <table class="w-full text-left">
+                                    <thead><tr class="border-b text-slate-500"><th class="py-1">ID</th><th>Nome</th><th>Telefone</th><th>Endereço</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b"><td>#1</td><td>Carlos Eduardo Silva</td><td>(54) 99812-3456</td><td>Rua Borges de Medeiros, 450</td></tr>
+                                        <tr><td>#2</td><td>Mariana Costa</td><td>(54) 99123-7890</td><td>Av. 25 de Julho, 112</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TELA 4: REGISTRO E FILA DE PEDIDOS DO DIA (FIGURA 8) -->
+                    <div id="prototipo-tela4" class="border-2 border-slate-300 rounded-lg overflow-hidden bg-slate-50 shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Tela 4 – Registro e Fila de Pedidos do Dia (RF03 / RF04 / RF05)</span>
+                            <span class="text-slate-400 font-mono">http://localhost:8080/casa-florense/pedidos</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-white p-3 rounded border border-slate-200">
+                                <div class="font-bold text-slate-800 mb-2">Lançar Novo Pedido</div>
+                                <div class="grid grid-cols-2 gap-2 mb-2">
+                                    <select class="border border-slate-300 rounded px-2 py-1 bg-white"><option>Cliente: #1 - Carlos Eduardo Silva</option></select>
+                                    <select class="border border-slate-300 rounded px-2 py-1 bg-white"><option>Item: #1 - Bife à Parmegiana Caseiro (R$ 44,90)</option></select>
+                                </div>
+                                <div class="flex items-center justify-between gap-2">
+                                    <span>Qtd: <strong>2</strong> | Total Calculado: <strong class="text-emerald-700">R$ 89,80</strong></span>
+                                    <button class="bg-amber-600 text-white font-semibold px-3 py-1 rounded">Confirmar Pedido</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded border border-slate-200">
+                                <div class="font-bold text-slate-700 mb-1">Fila de Pedidos do Dia</div>
+                                <table class="w-full text-left">
+                                    <thead><tr class="border-b text-slate-500"><th class="py-1">#</th><th>Cliente</th><th>Item do Cardápio</th><th>Total</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b"><td>#101</td><td>Carlos E.</td><td>2x Bife à Parmegiana Caseiro</td><td>R$ 89,80</td><td><span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-semibold">Em Preparo</span></td></tr>
+                                        <tr><td>#100</td><td>Mariana C.</td><td>1x Torta Holandesa c/ Calda</td><td>R$ 16,50</td><td><span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-semibold">Concluído</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             FIGURA 9 A 12: EXECUÇÃO E EVIDÊNCIAS DOS TESTES (FASES 4 E 5)
+             ========================================== -->
+        <div id="aba-fig6" class="aba-content hidden">
+            <div id="capture-fig6" class="diagram-canvas space-y-6">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Fases 4 e 5 — Telas em Execução e Evidências dos Casos de Teste CT01 a CT05 (Figuras 9, 10, 11 e 12)</div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- FIGURA 9 / 11: EVIDÊNCIA CT01 (SUCESSO NO CARDÁPIO) -->
+                    <div id="evidencia-ct01" class="border-2 border-emerald-500 rounded-lg overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Evidência CT01 – Cadastro Válido no Cardápio (MySQL)</span>
+                            <span class="text-emerald-300 font-mono">POST /sistema?acao=cadastrarProduto</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 px-3 py-2 rounded font-semibold flex items-center justify-between">
+                                <span>✔ Item adicionado ao cardápio da Casa Florense com sucesso!</span>
+                                <span class="text-[10px] bg-emerald-200 px-1.5 py-0.5 rounded">CT01 OK</span>
+                            </div>
+                            <div class="bg-slate-50 p-2.5 rounded border border-slate-200">
+                                <div class="font-bold text-slate-700 mb-1">Tabela <code>produto</code> atualizada (casa_florense_db)</div>
+                                <table class="w-full text-left border-collapse">
+                                    <thead><tr class="border-b text-slate-500"><th class="py-1">ID</th><th>Nome</th><th>Categoria</th><th>Preço</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b"><td>#1</td><td>Bife à Parmegiana Caseiro</td><td>Prato Caseiro</td><td>R$ 44,90</td></tr>
+                                        <tr class="border-b"><td>#2</td><td>X-Florense Artesanal</td><td>Lanche</td><td>R$ 29,00</td></tr>
+                                        <tr class="border-b bg-emerald-50 font-semibold"><td>#3</td><td>Torta Holandesa com Calda</td><td>Sobremesa</td><td>R$ 16,50</td></tr>
+                                        <tr><td>#4</td><td>Suco Natural de Uva 500ml</td><td>Bebida</td><td>R$ 12,00</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FIGURA 11B: EVIDÊNCIA CT02 (VALIDAÇÃO DE ERRO NO CARDÁPIO) -->
+                    <div id="evidencia-ct02" class="border-2 border-red-400 rounded-lg overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Evidência CT02 – Validação de Campos Obrigatórios</span>
+                            <span class="text-red-300 font-mono">Validação ProdutoDAO</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-red-50 border border-red-300 text-red-800 px-3 py-2 rounded font-semibold flex items-center justify-between">
+                                <span>⚠ Erro na operação: O nome do produto é obrigatório e o preço deve ser maior que zero.</span>
+                                <span class="text-[10px] bg-red-200 px-1.5 py-0.5 rounded shrink-0 ml-2">CT02 OK</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <input type="text" value="" placeholder="[Campo vazio]" readonly class="col-span-2 border-2 border-red-400 rounded px-2 py-1 bg-red-50/40" />
+                                    <input type="text" value="R$ 0,00" readonly class="border-2 border-red-400 rounded px-2 py-1 text-red-700 font-semibold" />
+                                </div>
+                                <p class="text-[11px] text-slate-500">Status do Banco: <strong>INSERT bloqueado</strong> (nenhum registro inválido gravado em <code>produto</code>).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FIGURA 10 / 12: EVIDÊNCIA CT03 E CT05 (PEDIDO E ATUALIZAÇÃO DE STATUS) -->
+                    <div id="evidencia-ct03-ct05" class="border-2 border-emerald-500 rounded-lg overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Evidência CT03 e CT05 – Cálculo e Atualização de Pedido</span>
+                            <span class="text-emerald-300 font-mono">INNER JOIN pedido / cliente / produto</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 px-3 py-2 rounded font-semibold flex items-center justify-between">
+                                <span>✔ Pedido #101 registrado (Total: R$ 89,80) e Status #100 atualizado!</span>
+                                <span class="text-[10px] bg-emerald-200 px-1.5 py-0.5 rounded shrink-0 ml-2">CT03 / CT05 OK</span>
+                            </div>
+                            <div class="bg-slate-50 p-2.5 rounded border border-slate-200">
+                                <div class="font-bold text-slate-700 mb-1">Fila de Pedidos do Dia (Execução Real)</div>
+                                <table class="w-full text-left border-collapse">
+                                    <thead><tr class="border-b text-slate-500"><th class="py-1">ID</th><th>Cliente</th><th>Item</th><th>Qtd</th><th>Total</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b bg-amber-50/60">
+                                            <td>#101</td><td>Carlos E. Silva</td><td>Bife à Parmegiana Caseiro</td><td>2</td><td class="font-bold">R$ 89,80</td>
+                                            <td><span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-semibold">Em Preparo</span></td>
+                                        </tr>
+                                        <tr class="bg-emerald-50/60">
+                                            <td>#100</td><td>Mariana Costa</td><td>Torta Holandesa c/ Calda</td><td>1</td><td class="font-bold">R$ 16,50</td>
+                                            <td><span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-semibold">Concluído ✔</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FIGURA 12B: EVIDÊNCIA CT04 (QUANTIDADE INVÁLIDA) -->
+                    <div id="evidencia-ct04" class="border-2 border-red-400 rounded-lg overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-800 text-white px-3 py-2 text-xs font-semibold flex items-center justify-between">
+                            <span>Evidência CT04 – Bloqueio de Quantidade Inválida (&lt;= 0)</span>
+                            <span class="text-red-300 font-mono">Validação PedidoDAO</span>
+                        </div>
+                        <div class="p-4 space-y-3 text-xs">
+                            <div class="bg-red-50 border border-red-300 text-red-800 px-3 py-2 rounded font-semibold flex items-center justify-between">
+                                <span>⚠ Erro na operação: A quantidade mínima para o pedido é 1 unidade.</span>
+                                <span class="text-[10px] bg-red-200 px-1.5 py-0.5 rounded shrink-0 ml-2">CT04 OK</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span>Cliente: <strong>Carlos Eduardo Silva</strong> | Item: <strong>X-Florense Artesanal</strong></span>
+                                    <span class="border-2 border-red-400 bg-red-50 text-red-700 font-bold px-2 py-0.5 rounded">Qtd informada: 0</span>
+                                </div>
+                                <p class="text-[11px] text-slate-500">Status do Banco: <strong>Transação recusada</strong> pela regra de negócio (<code>quantidade &lt;= 0</code>).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let abaAtiva = 'fig1';
+
+        function mostrarAba(id) {
+            abaAtiva = id;
+            document.querySelectorAll('.aba-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('aba-' + id).classList.remove('hidden');
+            document.getElementById('btn-' + id).classList.add('active');
+        }
+
+        function baixarDiagramaAtual() {
+            const container = document.getElementById('capture-' + abaAtiva);
+            html2canvas(container, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'CasaFlorense_' + abaAtiva + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
